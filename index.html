@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti 🌷</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(to top,#ff758c,#ffb199);
+    font-family:'Georgia',serif;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+}
+
+.sky{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:70%;
+    background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
+    z-index:0;
+}
+
+.ground{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:30%;
+    background:linear-gradient(to top,#4caf50,#2e7d32);
+    z-index:1;
+}
+
+.garden{
+    position:absolute;
+    bottom:30%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:40px;
+    z-index:2;
+}
+
+.tulip{
+    position:relative;
+    width:8px;
+    height:0;
+    background:#2e7d32;
+    transition:1.5s ease-out;
+}
+
+.flower{
+    position:absolute;
+    bottom:100%;
+    left:-14px;
+    font-size:32px;
+    opacity:0;
+    transition:1s;
+    animation:sway 3s ease-in-out infinite alternate;
+}
+
+@keyframes sway{
+    from{transform:rotate(-3deg);}
+    to{transform:rotate(3deg);}
+}
+
+.message{
+    position:relative;
+    z-index:3;
+    max-width:800px;
+    margin-bottom:40px;
+    padding:0 20px;
+    font-size:1.3em;
+    opacity:0;
+    transition:3s;
+    text-align:center;
+}
+
+.petals{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:4;
+}
+
+.petal{
+    position:absolute;
+    font-size:18px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    from{transform:translateY(-10vh);}
+    to{transform:translateY(110vh);}
+}
+</style>
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="ground"></div>
+<div class="garden" id="garden"></div>
+
+<div class="message" id="mensajeFinal">
+Desde el día en que llegaste a mi vida,
+todo empezó a florecer diferente.
+No fue casualidad.
+Fue elección.
+Fue destino.
+Fue ese instante en el que entendí
+que te quería conmigo.
+
+Y sí…
+eres mía en la forma más bonita que existe,
+porque yo también soy tuyo.
+
+Nuestro amor no es ruido.
+Es raíz.
+Es calma.
+Es fuego suave que no se apaga.
+
+Como este jardín,
+cada día crece un poco más. 🌷❤️
+</div>
+
+<div class="petals" id="petals"></div>
+
+<script>
+let garden = document.getElementById("garden");
+let totalTulips = 15;
+let creados = 0;
+
+function crearTulipan(){
+    if(creados >= totalTulips){
+        setTimeout(()=>{
+            document.getElementById("mensajeFinal").style.opacity="1";
+            lluviaPetalos();
+        },2000);
+        return;
+    }
+
+    let tulip = document.createElement("div");
+    tulip.classList.add("tulip");
+
+    let flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML="🌷";
+
+    tulip.appendChild(flower);
+    garden.appendChild(tulip);
+
+    setTimeout(()=>{
+        tulip.style.height = (120 + Math.random()*60)+"px";
+    },200);
+
+    setTimeout(()=>{
+        flower.style.opacity="1";
+    },1200);
+
+    creados++;
+}
+
+let intervalo = setInterval(crearTulipan,400);
+
+function lluviaPetalos(){
+    let petalsContainer = document.getElementById("petals");
+    setInterval(()=>{
+        let petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.innerHTML="🌸";
+        petal.style.left = Math.random()*100+"vw";
+        petal.style.animationDuration = (4+Math.random()*4)+"s";
+        petalsContainer.appendChild(petal);
+        setTimeout(()=>petal.remove(),8000);
+    },300);
+}
+</script>
+
+</body>
+</html>
