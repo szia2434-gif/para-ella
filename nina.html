@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at center,#2b0f0f,#120606 70%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:#4b1e0f;
+}
+
+/* LUZ SUAVE */
+.glow{
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle,rgba(255,200,150,0.4),transparent 70%);
+  border-radius:50%;
+  filter:blur(60px);
+  animation:pulse 4s infinite alternate;
+}
+
+@keyframes pulse{
+  from{transform:scale(0.9);}
+  to{transform:scale(1.1);}
+}
+
+/* SOBRE */
+.envelope{
+  width:320px;
+  height:220px;
+  background:linear-gradient(#e8d2a3,#d4b483);
+  border-radius:10px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.6);
+  position:relative;
+  cursor:pointer;
+  transition:1s;
+}
+
+.envelope:before{
+  content:"";
+  position:absolute;
+  width:0;
+  height:0;
+  border-left:160px solid transparent;
+  border-right:160px solid transparent;
+  border-bottom:110px solid #c9a86a;
+  top:-110px;
+  left:0;
+  transition:1s;
+}
+
+/* SELLO */
+.seal{
+  position:absolute;
+  width:60px;
+  height:60px;
+  background:#8b0000;
+  border-radius:50%;
+  top:80px;
+  left:130px;
+  box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
+  transition:0.6s;
+}
+
+/* CARTA */
+.letter{
+  position:absolute;
+  width:500px;
+  max-width:90%;
+  background:#f5e6c8;
+  padding:50px;
+  border-radius:15px;
+  box-shadow:0 40px 80px rgba(0,0,0,0.7);
+  transform:scale(0);
+  transition:1.5s ease;
+  text-align:center;
+}
+
+h1{
+  font-family:'Cinzel',serif;
+  margin-bottom:30px;
+  color:#5c2b0c;
+}
+
+#text{
+  font-family:'Great Vibes',cursive;
+  font-size:30px;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+/* PARTÍCULAS */
+.particle{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-100vh);opacity:0;}
+}
+
+.open .envelope{
+  opacity:0;
+  transform:scale(0);
+}
+
+.open .letter{
+  transform:scale(1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="envelope" id="envelope">
+  <div class="seal"></div>
+</div>
+
+<div class="letter" id="letter">
+  <h1>Para Mi Reina ❤️</h1>
+  <div id="text"></div>
+</div>
+
+<script>
+const envelope=document.getElementById("envelope");
+const letter=document.getElementById("letter");
+const text=document.getElementById("text");
+
+const message=`
+Desde que llegaste a mi vida,
+todo comenzó a tener sentido.
+
+No fue casualidad encontrarte,
+fue destino perfecto.
+
+Eres mi pensamiento favorito,
+mi lugar seguro,
+mi debilidad más hermosa.
+
+Contigo aprendí que el amor no se busca,
+se reconoce.
+
+Y yo te reconocí como el amor de mi vida.
+
+Te amoooo demasiadooo mi mujer hermosa ❤️
+`;
+
+let index=0;
+
+function typeWriter(){
+  if(index<message.length){
+    text.innerHTML+=message.charAt(index);
+    index++;
+    setTimeout(typeWriter,40);
+  }
+}
+
+envelope.addEventListener("click",()=>{
+  document.body.classList.add("open");
+  setTimeout(()=>{
+    typeWriter();
+    createParticles();
+  },1200);
+});
+
+function createParticles(){
+  for(let i=0;i<40;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"vw";
+    p.style.bottom="-10px";
+    p.style.animationDuration=(Math.random()*4+4)+"s";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),6000);
+  }
+}
+</script>
+
+</body>
+</html>
