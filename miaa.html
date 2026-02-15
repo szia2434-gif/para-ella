@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50 razones poque ti amuu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+.container{
+  text-align:center;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  width:90%;
+  max-width:500px;
+  position:relative;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:white;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+button{
+  padding:15px 25px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:white;
+  color:#ee6a7c;
+  font-weight:500;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover{
+  transform:scale(1.08);
+  background:#fff0f3;
+}
+
+.razon{
+  margin-top:30px;
+  font-size:18px;
+  color:white;
+  min-height:60px;
+  opacity:0;
+  transition:opacity 0.6s ease, transform 0.6s ease;
+  transform:translateY(10px);
+}
+
+.mostrar{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.corazon{
+  position:absolute;
+  font-size:20px;
+  animation:flotar 4s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes flotar{
+  0%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-20px) scale(1.2);}
+  100%{transform:translateY(0) scale(1);}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>50 razones poque ti amuu 💖</h1>
+  <button onclick="mostrarRazon()">Haz clic aquí</button>
+  <div class="razon" id="razon"></div>
+</div>
+
+<script>
+const razones = [
+"Porque tu risa reinicia mi día.",
+"Porque haces que todo tenga sentido.",
+"Porque tu voz me calma sin que lo intentes.",
+"Porque contigo el tiempo corre y vuela al mismo tiempo.",
+"Porque tus abrazos son mi lugar favorito.",
+"Porque tienes esa mirada que desarma.",
+"Porque me inspiras a ser mejor.",
+"Porque haces especial lo cotidiano.",
+"Porque tu sonrisa ilumina más que el sol.",
+"Porque contigo hasta el silencio es bonito.",
+"Porque eres ternura en versión humana.",
+"Porque me entiendes incluso cuando no hablo.",
+"Porque haces que mi corazón lata diferente.",
+"Porque me haces sentir elegido.",
+"Porque tu forma de pensar me encanta.",
+"Porque tus mensajes cambian mi humor en segundos.",
+"Porque tu energía es adictiva.",
+"Porque me miras como si fuera importante.",
+"Porque haces que el mundo se vea más suave.",
+"Porque cuando ríes todo se acomoda.",
+"Porque tu manera de querer es única.",
+"Porque haces magia sin darte cuenta.",
+"Porque me haces sonreír como tonto.",
+"Porque contigo todo fluye.",
+"Porque tus detalles valen oro.",
+"Porque eres dulce sin exagerar.",
+"Porque me haces sentir en casa.",
+"Porque tu ternura me desarma.",
+"Porque me gusta cómo pronuncias mi nombre.",
+"Porque tienes algo que no se explica.",
+"Porque me haces creer en lo bonito.",
+"Porque tu presencia tranquiliza.",
+"Porque tus ojos cuentan historias.",
+"Porque contigo no finjo nada.",
+"Porque haces que mis días grises cambien.",
+"Porque tu forma de abrazar se queda.",
+"Porque contigo la vida sabe mejor.",
+"Porque haces que lo simple sea inolvidable.",
+"Porque tienes esa chispa especial.",
+"Porque tu risa es mi sonido favorito.",
+"Porque me haces sentir seguro.",
+"Porque tu cariño se siente real.",
+"Porque contigo me siento ligero.",
+"Porque tu forma de hablar me encanta.",
+"Porque tu energía es contagiosa.",
+"Porque me haces sentir suerte.",
+"Porque eres paciencia y locura perfecta.",
+"Porque haces que todo valga la pena.",
+"Porque me haces querer quedarme.",
+"Porque simplemente… ti amuu."
+];
+
+let usadas = [];
+
+function mostrarRazon(){
+  if(usadas.length === razones.length){
+    usadas = [];
+  }
+
+  let index;
+  do{
+    index = Math.floor(Math.random() * razones.length);
+  }while(usadas.includes(index));
+
+  usadas.push(index);
+
+  const razonDiv = document.getElementById("razon");
+  razonDiv.classList.remove("mostrar");
+
+  setTimeout(()=>{
+    razonDiv.textContent = razones[index];
+    razonDiv.classList.add("mostrar");
+  },300);
+}
+</script>
+
+</body>
+</html>
