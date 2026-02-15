@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Buenos días 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9acb,#ffc3e6,#fff0f7);
+    font-family:'Playfair Display', serif;
+    overflow:hidden;
+}
+
+/* Partículas */
+.particula{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:rgba(255,255,255,0.7);
+    border-radius:50%;
+    animation:flotar linear infinite;
+}
+
+@keyframes flotar{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+/* Carta */
+.carta{
+    width:650px;
+    min-height:350px;
+    background:#fff8f2;
+    padding:60px;
+    border-radius:25px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.2);
+    position:relative;
+}
+
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:50px;
+    margin:0 0 30px 0;
+    color:#c2185b;
+}
+
+p{
+    font-size:20px;
+    line-height:1.9;
+    color:#5a0033;
+    white-space:pre-wrap;
+}
+
+.cursor{
+    display:inline-block;
+    width:2px;
+    background:#c2185b;
+    animation:blink 1s infinite;
+    margin-left:3px;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:0;}
+    100%{opacity:1;}
+}
+
+/* Nombre iluminado */
+.nombre{
+    color:#ff1493;
+    text-shadow:0 0 10px #ff69b4, 0 0 20px #ff1493;
+    animation:brillo 2s infinite alternate;
+}
+
+@keyframes brillo{
+    from{ text-shadow:0 0 10px #ff69b4; }
+    to{ text-shadow:0 0 25px #ff1493; }
+}
+
+/* Corazón final */
+.corazon-final{
+    position:absolute;
+    bottom:-50px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:60px;
+    opacity:0;
+    animation:latir 1s infinite;
+}
+
+@keyframes latir{
+    0%{transform:translateX(-50%) scale(1);}
+    50%{transform:translateX(-50%) scale(1.2);}
+    100%{transform:translateX(-50%) scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="carta">
+    <h1>Buenos días, mi vida 💞</h1>
+    <p id="texto"></p><span class="cursor"></span>
+    <div class="corazon-final" id="corazon">💖</div>
+</div>
+
+<script>
+/* Crear partículas */
+for(let i=0;i<40;i++){
+    let p = document.createElement("div");
+    p.className="particula";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*10)+"s";
+    p.style.opacity=Math.random();
+    document.body.appendChild(p);
+}
+
+const mensaje = `Buenos días, mi pecho hermoso…
+
+Hoy desperté y lo primero que hice fue sonreír… 
+porque existes.
+
+No tienes idea de lo agradecido que estoy de tenerte en mi vida, mi bb pechochaaaa guapaaaa
+Eres ese pensamiento bonito que aparece antes incluso de abrir bien los ojos.
+
+Gracias por ser mi calma cuando el mundo corre,
+mi risa cuando el día pesa,
+mi debilidad favorita,
+mi coincidencia más perfecta.
+
+Me encanta imaginarte despertando con esa carita que me derrite el alma.
+
+Que tengas un día precioso…
+pero no más precioso que tú.
+
+Siempre tú.
+Siempre nosotros.`;
+
+const elemento = document.getElementById("texto");
+const corazon = document.getElementById("corazon");
+
+let i = 0;
+
+function escribir(){
+    if(i < mensaje.length){
+        elemento.innerHTML += mensaje.charAt(i);
+        i++;
+
+        let velocidad = 35;
+
+        if(mensaje.charAt(i-1) === "." || mensaje.charAt(i-1) === "," || mensaje.charAt(i-1) === "\n"){
+            velocidad = 250;
+        }
+
+        setTimeout(escribir, velocidad);
+    } else {
+        corazon.style.opacity = 1;
+    }
+}
+
+escribir();
+</script>
+
+</body>
+</html>
