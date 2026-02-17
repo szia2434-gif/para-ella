@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Mi Amor 💖</title>
+
+<style>
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#ff4da6,#1a1a2e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+  color:white;
+}
+
+.container{
+  text-align:center;
+  max-width:600px;
+}
+
+h1{
+  font-size:3rem;
+  animation:latido 1.5s infinite;
+  text-shadow:0 0 20px #ff99cc,0 0 40px #ff1a8c;
+}
+
+#texto{
+  font-size:1.3rem;
+  min-height:120px;
+  margin-top:20px;
+}
+
+button{
+  margin-top:20px;
+  padding:10px 25px;
+  font-size:1rem;
+  border:none;
+  border-radius:25px;
+  background:#ff1a8c;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #fff;
+}
+
+@keyframes latido{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+.corazon{
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#ff1a8c;
+  transform:rotate(45deg);
+  animation:flotar 6s linear infinite;
+}
+
+.corazon::before,
+.corazon::after{
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#ff1a8c;
+  border-radius:50%;
+}
+
+.corazon::before{ top:-10px; left:0; }
+.corazon::after{ left:-10px; top:0; }
+
+@keyframes flotar{
+  0%{bottom:-20px;opacity:1;}
+  100%{bottom:110%;opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Amooorr 💖</h1>
+  <div id="texto"></div>
+  <button onclick="sorpresa()">Tócame 💘</button>
+</div>
+
+<script>
+const mensaje = "No kiero q te sientas triste... tú eres mi luz cuando todo se pone gris, eres mi calma cuando mi mente se acelera, eres la razón por la que sonrío sin darme cuenta... y si algún día te sientes bajita, recuerda que aquí estoy para abrazarte fuerte fuerte y llenarte de amor infinito 💖";
+
+let i = 0;
+function escribir(){
+  if(i < mensaje.length){
+    document.getElementById("texto").innerHTML += mensaje.charAt(i);
+    i++;
+    setTimeout(escribir,40);
+  }
+}
+escribir();
+
+function crearCorazon(){
+  const corazon=document.createElement('div');
+  corazon.classList.add('corazon');
+  corazon.style.left=Math.random()*100+'vw';
+  corazon.style.animationDuration=(Math.random()*3+3)+'s';
+  document.body.appendChild(corazon);
+  setTimeout(()=>{corazon.remove();},6000);
+}
+setInterval(crearCorazon,500);
+
+function sorpresa(){
+  for(let x=0;x<20;x++){
+    crearCorazon();
+  }
+  alert("Te amoooo muchísimo 💖 nunca olvides lo especial que eres para mí.");
+}
+</script>
+
+</body>
+</html>
