@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Buenos Días Mi Amor 🌅</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: background 8s linear;
+}
+
+/* CIELO */
+.noche {
+    background: linear-gradient(#0b0f2a, #1a245a);
+}
+
+.amanecer {
+    background: linear-gradient(#ff9966, #ff5e62, #ffd194);
+}
+
+/* SOL */
+.sol {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #ffd700, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 60px #ffae00;
+    animation: subirSol 10s ease forwards;
+}
+
+@keyframes subirSol {
+    from { bottom: -150px; }
+    to { bottom: 40%; }
+}
+
+/* TEXTO */
+.container {
+    text-align: center;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: aparecer 4s ease forwards 4s;
+}
+
+#mensaje {
+    font-size: 1.4em;
+    max-width: 520px;
+    margin: auto;
+    min-height: 80px;
+    opacity: 0;
+    animation: aparecer 4s ease forwards 6s;
+}
+
+@keyframes aparecer {
+    to { opacity: 1; }
+}
+
+/* ESTRELLAS */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.8;
+    animation: desaparecer 6s forwards;
+}
+
+@keyframes desaparecer {
+    to { opacity: 0; }
+}
+
+/* CORAZONES */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body class="noche">
+
+<div class="sol"></div>
+
+<div class="container">
+    <h1>Buenos días, mi amor ❤️</h1>
+    <div id="mensaje"></div>
+</div>
+
+<script>
+
+/* TRANSICIÓN AMANECER */
+setTimeout(() => {
+    document.body.classList.remove("noche");
+    document.body.classList.add("amanecer");
+}, 3000);
+
+/* MENSAJE ROMÁNTICO */
+const texto = [
+    "Buenos días, mi princesa hermosa... 💕",
+    "mi niña linda, mi vida, mi todo...",
+    "Espero que hayas tenido dulces sueños y que este nuevo día te traiga mucha alegría 😊",
+    "Mientras el sol empieza a salir, yo solo puedo pensar en ti 😍",
+    "Eres lo primero que llega a mi mente cada mañana, mi bebé...",
+    "la dueña de mis pensamientos y de mi corazón ❤️",
+    "Despierta, mi reina... que alguien aquí está completamente enamorado de ti 💖",
+    "Ojalá pudiera abrazarte ahora mismo, mi cielo...",
+    "llenarte de besitos y no soltarte nunca 😘",
+    "Recuerda siempre, mi amor...",
+    "eres lo más bonito que tengo en mi vida ✨"
+];
+
+let i = 0, j = 0, actual = "";
+
+function escribir() {
+    if (i < texto.length) {
+        if (j < texto[i].length) {
+            actual += texto[i][j];
+            document.getElementById("mensaje").innerHTML = actual;
+            j++;
+            setTimeout(escribir, 40);
+        } else {
+            actual += "<br><br>";
+            j = 0;
+            i++;
+            setTimeout(escribir, 900);
+        }
+    }
+}
+
+setTimeout(escribir, 6000);
+
+/* ESTRELLAS */
+for (let i = 0; i < 80; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(star);
+}
+
+/* CORAZONES */
+function crearCorazon() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+}
+setInterval(crearCorazon, 500);
+
+</script>
+
+</body>
+</html>
