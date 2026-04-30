@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>19 Meses 💖</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* estrellas */
+.estrella{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  opacity:0.8;
+  animation: brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+
+/* contenedor */
+.container{
+  max-width:650px;
+  z-index:2;
+}
+
+/* título */
+h1{
+  font-size:2.7em;
+  margin-bottom:20px;
+  opacity:0;
+  animation: fade 3s forwards;
+}
+
+/* mensajes */
+p{
+  font-size:1.3em;
+  margin:10px 0;
+  opacity:0;
+}
+
+/* animación texto */
+@keyframes fade{
+  to{opacity:1;}
+}
+
+/* corazón central */
+.corazon-grande{
+  font-size:80px;
+  animation: latido 1s infinite;
+  margin:20px 0;
+}
+
+@keyframes latido{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* botón */
+.boton{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.boton:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #ff4d6d;
+}
+
+/* mensaje final */
+.final{
+  margin-top:20px;
+  font-size:1.3em;
+  opacity:0;
+  transition:1.5s;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>💖 19 Meses Contigo 💖</h1>
+
+  <div class="corazon-grande">❤</div>
+
+  <p id="m1"></p>
+  <p id="m2"></p>
+  <p id="m3"></p>
+  <p id="m4"></p>
+
+  <button class="boton" onclick="mostrar()">Tócalo 💌</button>
+
+  <div class="final" id="final">
+    No eres solo alguien especial…<br><br>
+    Eres mi pensamiento favorito, mi debilidad,<br>
+    mi lugar seguro… y lo único que no quiero perder jamás.<br><br>
+    19 meses contigo y te elegiría mil veces más ❤️
+  </div>
+</div>
+
+<script>
+// estrellas
+for(let i=0;i<120;i++){
+  const estrella = document.createElement("div");
+  estrella.classList.add("estrella");
+  estrella.style.left = Math.random()*100+"vw";
+  estrella.style.top = Math.random()*100+"vh";
+  estrella.style.animationDuration = (Math.random()*2+1)+"s";
+  document.body.appendChild(estrella);
+}
+
+// mensajes tipo máquina
+const mensajes = [
+  "19 meses contigo… y sigo sintiendo lo mismo o más fuerte…",
+  "Me encantas de una forma que no puedo explicar…",
+  "Eres esa persona que quiero en todos mis días…",
+  "Y sinceramente… no quiero un futuro donde no estés tú ❤️"
+];
+
+let i=0;
+
+function escribir(){
+  if(i < mensajes.length){
+    let p = document.getElementById("m"+(i+1));
+    let texto = mensajes[i];
+    let j=0;
+
+    let intervalo = setInterval(()=>{
+      p.style.opacity=1;
+      p.innerHTML += texto.charAt(j);
+      j++;
+      if(j>=texto.length){
+        clearInterval(intervalo);
+        i++;
+        setTimeout(escribir,700);
+      }
+    },45);
+  }
+}
+
+escribir();
+
+function mostrar(){
+  document.getElementById("final").style.opacity = 1;
+}
+</script>
+
+</body>
+</html>
