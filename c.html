@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta Larga Romántica</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle, #3e2c1c, #1a120b);
+    font-family: 'Georgia', serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+/* PAPEL LARGO */
+.papel {
+    width: 700px;
+    min-height: 90vh;
+    background: #f5e6c8;
+    padding: 60px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.7);
+    position: relative;
+
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(0,0,0,0.05), transparent 50%);
+}
+
+/* efecto bordes antiguos */
+.papel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.6);
+    pointer-events: none;
+}
+
+/* TEXTO */
+.texto {
+    font-size: 19px;
+    color: #3b2a1a;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+/* CURSOR */
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 20px;
+    background: #3b2a1a;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,100% {opacity:1;}
+    50% {opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="papel">
+    <div class="texto" id="texto"></div><span class="cursor"></span>
+</div>
+
+<script>
+const mensaje = `Mi amor...
+
+Si supieras todo lo que pasa por mi mente cuando pienso en ti,
+probablemente entenderías por qué nunca dejo de hacerlo.
+
+No eres solo alguien importante en mi vida,
+eres esa persona que llegó sin hacer ruido
+y terminó convirtiéndose en lo más intenso que siento.
+
+Me haces falta incluso cuando estás conmigo,
+porque contigo nunca es suficiente…
+siempre quiero un poco más,
+un poco más de tu tiempo,
+de tu atención,
+de tu forma de mirarme como si yo fuera todo para ti.
+
+Hay algo en ti que me atrapa,
+que me envuelve,
+que me hace quedarme sin ganas de mirar a alguien más…
+
+y no quiero escapar de eso.
+
+Porque contigo todo se siente diferente,
+más real,
+más profundo,
+más mío.
+
+A veces me descubro sonriendo solo,
+recordando cualquier detalle tuyo,
+y ahí es cuando entiendo
+que ya no hay vuelta atrás…
+
+que me tienes completamente.
+
+No sé en qué momento pasó,
+pero ahora todo en mí te busca,
+te piensa,
+te quiere más de lo que debería,
+y aún así no me importa.
+
+Porque si amar así es un riesgo,
+entonces no quiero estar a salvo…
+
+quiero quedarme justo aquí,
+contigo.
+
+Siempre contigo. ❤️`;
+
+let i = 0;
+
+function escribir() {
+    if (i < mensaje.length) {
+        document.getElementById("texto").innerHTML += mensaje.charAt(i);
+        i++;
+
+        // auto scroll mientras escribe
+        window.scrollTo(0, document.body.scrollHeight);
+
+        setTimeout(escribir, 30);
+    }
+}
+
+window.onload = () => {
+    setTimeout(escribir, 600);
+};
+</script>
+
+</body>
+</html>
