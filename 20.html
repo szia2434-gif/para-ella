@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20 Meses Juntos ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Georgia',serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(180deg,#060814,#150c2e,#30104d,#5a165e);
+}
+
+.cielo{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+.estrella{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:brillar 3s infinite;
+}
+
+@keyframes brillar{
+    50%{
+        opacity:.2;
+        transform:scale(.5);
+    }
+}
+
+.luna{
+    position:absolute;
+    top:60px;
+    right:100px;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#fff9dc;
+    box-shadow:0 0 50px #fff9dc;
+}
+
+.corazon{
+    position:absolute;
+    color:#ff7aa2;
+    font-size:20px;
+    animation:subir linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+.container{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.carta{
+    width:90%;
+    max-width:900px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:30px;
+    padding:50px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 50px rgba(255,105,180,.3);
+    animation:aparecer 3s ease;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-size:3rem;
+    color:#ffd1e6;
+    margin-bottom:20px;
+    text-shadow:0 0 15px pink;
+}
+
+.contador{
+    font-size:2rem;
+    margin-bottom:25px;
+    color:#ffe8f2;
+}
+
+.texto{
+    font-size:1.25rem;
+    line-height:2;
+    min-height:300px;
+    white-space:pre-wrap;
+}
+
+.boton{
+    margin-top:25px;
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    background:#ff5f95;
+    color:white;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.boton:hover{
+    transform:scale(1.1);
+}
+
+.mensajeFinal{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    opacity:0;
+    pointer-events:none;
+    transition:1.5s;
+    text-align:center;
+    padding:30px;
+}
+
+.mensajeFinal.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.mensajeFinal h2{
+    font-size:4rem;
+    color:#ffb7d4;
+    margin-bottom:20px;
+}
+
+.mensajeFinal p{
+    font-size:1.8rem;
+    max-width:900px;
+    line-height:1.8;
+}
+
+@media(max-width:768px){
+
+h1{
+    font-size:2rem;
+}
+
+.texto{
+    font-size:1rem;
+}
+
+.mensajeFinal h2{
+    font-size:2.3rem;
+}
+
+.mensajeFinal p{
+    font-size:1.2rem;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="cielo" id="cielo"></div>
+
+<div class="luna"></div>
+
+<div class="container">
+    <div class="carta">
+        <h1>❤️ Felices 20 Meses Mi Amor ❤️</h1>
+
+        <div class="contador" id="contador"></div>
+
+        <div class="texto" id="texto"></div>
+
+        <button class="boton" onclick="mostrarFinal()">
+            Presióname ❤️
+        </button>
+    </div>
+</div>
+
+<div class="mensajeFinal" id="final">
+    <h2>✨ 20 Meses Inolvidables ✨</h2>
+
+    <p>
+        Si pudiera elegir mil veces con quién compartir mis días,
+        mis noches, mis sueños y mis futuros, te elegiría a ti
+        una y otra vez.
+
+        Gracias por estos 20 meses llenos de amor, risas,
+        recuerdos hermosos y momentos que guardaré para siempre.
+
+        Eres mi lugar favorito, mi casualidad más bonita,
+        mi felicidad diaria y el amor que deseo cuidar toda la vida.
+
+        ❤️ Te amo infinitamente ❤️
+    </p>
+</div>
+
+<script>
+
+// ESTRELLAS
+
+for(let i=0;i<200;i++){
+
+let estrella=document.createElement("div");
+
+estrella.className="estrella";
+
+estrella.style.left=Math.random()*100+"%";
+estrella.style.top=Math.random()*100+"%";
+estrella.style.animationDuration=(2+Math.random()*4)+"s";
+
+document.getElementById("cielo").appendChild(estrella);
+}
+
+// CORAZONES
+
+function crearCorazon(){
+
+let corazon=document.createElement("div");
+
+corazon.className="corazon";
+corazon.innerHTML="❤";
+
+corazon.style.left=Math.random()*100+"vw";
+corazon.style.fontSize=(15+Math.random()*35)+"px";
+corazon.style.animationDuration=(6+Math.random()*6)+"s";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{
+corazon.remove();
+},12000);
+}
+
+setInterval(crearCorazon,250);
+
+// CONTADOR
+
+const inicio=new Date("2024-10-01");
+
+function actualizar(){
+
+const ahora=new Date();
+
+let dias=Math.floor((ahora-inicio)/(1000*60*60*24));
+
+document.getElementById("contador").innerHTML=
+"Han pasado aproximadamente ❤️ "+dias+" días de amor ❤️";
+}
+
+actualizar();
+
+// EFECTO MAQUINA
+
+const mensaje=`Mi niña hermosa...
+
+Hoy celebramos 20 meses juntos.
+
+20 meses de sonrisas.
+20 meses de abrazos.
+20 meses de conversaciones infinitas.
+20 meses donde cada día a tu lado ha valido completamente la pena.
+
+A veces pienso en todo lo que hemos vivido y me doy cuenta de algo:
+
+No fueron solamente meses...
+
+Fueron momentos que poco a poco se convirtieron en recuerdos,
+y recuerdos que terminaron convirtiéndose en una parte muy importante de mi vida.
+
+Gracias por cada palabra bonita.
+Gracias por cada detalle.
+Gracias por cada apoyo.
+Gracias por cada instante en el que elegiste quedarte.
+
+Y aunque el tiempo siga pasando,
+hay algo que nunca cambia:
+
+Mi amor por ti sigue creciendo más y más cada día.
+
+❤️`;
+
+let i=0;
+
+function escribir(){
+
+if(i<mensaje.length){
+
+document.getElementById("texto").innerHTML+=mensaje.charAt(i);
+
+i++;
+
+setTimeout(escribir,40);
+}
+
+}
+
+escribir();
+
+function mostrarFinal(){
+
+document.getElementById("final").classList.add("show");
+
+for(let i=0;i<100;i++){
+
+setTimeout(()=>{
+crearCorazon();
+},i*50);
+
+}
+
+}
+</script>
+
+</body>
+</html>
